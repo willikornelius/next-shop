@@ -30,7 +30,7 @@ const products = [
 // }
 
 export const metadata: Metadata = {
-  title: 'My Page Title',
+  title: 'My Page Title 2',
 };
 
 const HomePage = async () => {
