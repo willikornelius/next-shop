@@ -1,7 +1,5 @@
 import Title from '@/components/Title';
 import getProducts from '@/library/products';
-import { log } from 'console';
-import { InferGetStaticPropsType } from 'next';
 import { Metadata } from 'next';
 import React from 'react';
 
