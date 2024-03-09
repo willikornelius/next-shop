@@ -1,12 +1,14 @@
+'use client';
+
 import Title from '@/components/Title';
 import getProducts from '@/library/products';
 import { Metadata } from 'next';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
-const products = [
-  { id: 1, title: 'asdas' },
-  { id: 2, title: 'gg' },
-];
+// const products = [
+//   { id: 1, title: 'asdas' },
+//   { id: 2, title: 'gg' },
+// ];
 
 // export async function getStaticProps(context) {
 //   console.log('[getStaticProps] render : ');
@@ -27,20 +29,25 @@ const products = [
 //   return projects;
 // }
 
-export const metadata: Metadata = {
-  title: 'My Page Title 2',
-};
+// export const metadata: Metadata = {
+//   title: 'My Page Title 2',
+// };
 
-const HomePage = async () => {
-  const projects = await getProducts();
+const HomePage = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
+  //   const projects = await getProducts();
   // console.log('[HomePage] render : ', now);
-  console.log('[HomePage] render : ');
+  console.log('[HomePage] render : ', products);
   return (
     <>
       <main className="px-6 py-4">
         <Title> Next Shop</Title>
         <ul>
-          {projects.map((product: { id: number; title: string }) => (
+          {products.map((product: { id: number; title: string }) => (
             <li key={product.id}>{product.title}</li>
           ))}
         </ul>
