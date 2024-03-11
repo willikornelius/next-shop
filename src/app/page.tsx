@@ -1,8 +1,9 @@
 import Title from '@/components/Title';
-import getProducts from '@/library/products';
+import { getProducts } from '@/library/products';
 import { log } from 'console';
 import { InferGetStaticPropsType } from 'next';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import React from 'react';
 
 const products = [
@@ -36,14 +37,16 @@ export const metadata: Metadata = {
 const HomePage = async () => {
   const projects = await getProducts();
   // console.log('[HomePage] render : ', now);
-  console.log('[HomePage] render : ');
+  console.log('[HomePage] render : ', projects);
   return (
     <>
       <main className="px-6 py-4">
         <Title> Next Shop</Title>
         <ul>
           {projects.map((product: { id: number; title: string }) => (
-            <li key={product.id}>{product.title}</li>
+            <li key={product.id}>
+              <Link href={`/products/${product.id}`}>{product.title}</Link>
+            </li>
           ))}
         </ul>
       </main>

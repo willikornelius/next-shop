@@ -1,7 +1,7 @@
 'use client';
 
 import Title from '@/components/Title';
-import getProducts from '@/library/products';
+import { getProducts2 } from '@/library/products';
 import { Metadata } from 'next';
 import { useEffect, useState } from 'react';
 
@@ -37,7 +37,13 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts().then(setProducts);
+    // getProducts2().then(setProducts);
+
+    (async () => {
+      const response = await fetch('http://localhost:3000/api');
+      const products = await response.json();
+      setProducts(products);
+    })();
   }, []);
   //   const projects = await getProducts();
   // console.log('[HomePage] render : ', now);
